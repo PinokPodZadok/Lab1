@@ -19,11 +19,7 @@ public class LB3 {
 
 		   System.out.println("The initial list is :"+arrlst);
 		      
-		  
-		// reverse the list
-		   //Collections.sort(set, Collections.reverseOrder());
-		   //Collection s.sort (list);
-		   Collections.reverse(arrlst);
+		   Collections.sort(arrlst, Collections.reverseOrder());
 		      
 		   System.out.println("The Reverse List is :"+arrlst);
 		   }
