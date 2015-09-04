@@ -1,32 +1,30 @@
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
-
+import java.util.Scanner;
 
 public class LB3 {
 
 	public static void main(String[] args) {
-
 		// create array list object
-		   ArrayList<String> arrlst = new ArrayList();
-		      
-		   // populate the list
-		   arrlst.add("3");
-		   arrlst.add("-2");
-		   arrlst.add("1");
-		   arrlst.add("7");
-		   arrlst.add("4");
+		ArrayList<String> arrlst = new ArrayList<String>();
+		// populate the list
+		System.out
+				.print("Введите комбинацию цифр от минус бесконечности до плюс бесконечности: ");
+		@SuppressWarnings("resource")
+		Scanner s = new Scanner(System.in);// Создаем сканер
+		String str = s.nextLine();
+		int c = 0;
+		for (int i = 0; i < str.length(); i++) {
 
-		   System.out.println("The initial list is :"+arrlst);
-		      
-		   Collections.sort(arrlst, Collections.reverseOrder());
-		      
-		   System.out.println("The Reverse List is :"+arrlst);
-		   }
+			c = str.codePointAt(i);
+			if (c == 32) {
+			} else  {
+				arrlst.add(str);
+			}
 		}
-		
-		
-	
 
-
-        //Collections.sort(set, Collections.reverseOrder());
+		System.out.println("Вы ввели комбинацию :" + arrlst);
+		Collections.sort(arrlst, Collections.reverseOrder());
+		System.out.println("Отсортированная комбинация :" + arrlst);
+	}
+}
