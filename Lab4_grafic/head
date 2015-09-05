@@ -1,0 +1,13 @@
+import javax.swing.JFrame;
+
+public class head {
+
+	public static void main(String[] args) {
+		newGUI r = new newGUI("Перестановка цифр");
+		r.setVisible(true);
+		r.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		r.setSize(500, 200);
+		r.setResizable(false);
+		r.setLocationRelativeTo(null);
+	}
+}
