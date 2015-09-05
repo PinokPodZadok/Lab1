@@ -1,0 +1,62 @@
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Collections;
+
+import javax.swing.*;
+
+public class newGUI extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	JButton b1, b2;
+	JLabel l1, l2;
+	JTextField t1, t2;
+	int i, k;
+	String a, b;
+	eHandler handler = new eHandler();
+
+	public newGUI(String s) {
+		super(s);
+		setLayout(new FlowLayout());
+		b1 = new JButton("Очистить");
+		b2 = new JButton("Посчитать");
+		l1 = new JLabel("Введите комбинацию чисел");
+		l2 = new JLabel("");
+		t1 = new JTextField(10);
+		add(b1);
+		add(b2);
+		add(l1);
+		add(t1);
+		add(l2);
+		b2.addActionListener(handler);
+		b1.addActionListener(handler);
+	}
+	public class eHandler implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			try {
+				if (e.getSource() == b2) {
+					// i = Integer.parseInt(t1.getText());
+					// i++;
+					ArrayList<Integer> arrlst = new ArrayList<Integer>();
+					String[] line = t1.getText().split(" ");
+					int i = 0;
+					for (i = 0; i < line.length; ++i)
+						arrlst.add(Integer.parseInt(line[i].trim()));
+					Collections.sort(arrlst, Collections.reverseOrder());
+					a = "Комбинация цифр теперь равна " + arrlst;
+					l2.setText(a);
+				}
+				if (e.getSource() == b1) {
+					t1.setText(null);
+					l2.setText(null);
+				}
+			} catch (Exception ex) {
+				JOptionPane.showMessageDialog(null, "Необходимо вводить ЧИСЛА и только ЧИСЛА!\n   (От + бесконечности до - бесконечности)");
+			}
+		}
+	}
+
+}
