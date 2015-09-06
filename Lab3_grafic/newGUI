@@ -3,61 +3,55 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
-
 import javax.swing.*;
-
 public class newGUI extends JFrame {
-	/**
-	 * 
-	 */
+	/** Не используя вспомогательных объектов, 
+	  * переставить отрицательные элементы данного списка 
+ 	    в конец, а положительные - в начало этого списка.*/
 	private static final long serialVersionUID = 1L;
-	JButton b1, b2;
-	JLabel l1, l2;
-	JTextField t1, t2;
-	int i, k;
-	String a, b;
-	eHandler handler = new eHandler();
-
+	JButton b1, b2;//Кнопка b1, b2
+	JLabel l1, l2;//Надпись l1, l2
+	JTextField t1;//Поле ввода текста
+	eHandler handler = new eHandler();//Новый класс для отлова ошибки
 	public newGUI(String s) {
 		super(s);
 		setLayout(new FlowLayout());
-		b1 = new JButton("Очистить");
-		b2 = new JButton("Посчитать");
-		l1 = new JLabel("Введите комбинацию чисел");
-		l2 = new JLabel("");
-		t1 = new JTextField(10);
-		add(b1);
-		add(b2);
-		add(l1);
-		add(t1);
-		add(l2);
-		b2.addActionListener(handler);
-		b1.addActionListener(handler);
+		b1 = new JButton("Очистить");//Кнопка "Очистить"
+		b2 = new JButton("Посчитать");//Кнопка "Посчитать"
+		l1 = new JLabel("Введите комбинацию чисел");//Надпись "Введите комбинацию чисел"
+		l2 = new JLabel("");//Пустая надпись для вывода результата 
+		t1 = new JTextField(10);//Поле ввода
+		add(b1);//Добавляем кнопку b1
+		add(b2);//Добавляем кнопку b2
+		add(l1);//Добавляем надпись l1
+		add(t1);//Добавляем поле ввода t1
+		add(l2);//Добавляем надпись l2
+		b2.addActionListener(handler);//Задаем действие кнопке b1
+		b1.addActionListener(handler);//Задаем действие кнопке b2
 	}
 	public class eHandler implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			try {
-				if (e.getSource() == b2) {
-					// i = Integer.parseInt(t1.getText());
-					// i++;
-					ArrayList<Integer> arrlst = new ArrayList<Integer>();
-					String[] line = t1.getText().split(" ");
-					int i = 0;
-					for (i = 0; i < line.length; ++i)
-						arrlst.add(Integer.parseInt(line[i].trim()));
-					Collections.sort(arrlst, Collections.reverseOrder());
-					a = "Комбинация цифр теперь равна " + arrlst;
-					l2.setText(a);
+			try { //пока
+				if (e.getSource() == b2) { //Если нажимают кнопку b2
+					ArrayList<Integer> arrlst = new ArrayList<Integer>();//Создаем массив
+					String[] line = t1.getText().split(" ");//Считываем данные с поля ввода через пробел
+					int i = 0;//обьявляем и обнуляем переменную i
+					for (i = 0; i < line.length; ++i)//Создаем цикл
+						arrlst.add(Integer.parseInt(line[i].trim()));//По одной цифре заносим в массив
+					Collections.sort(arrlst, Collections.reverseOrder());//Сортируем от большего к меньшему
+					l2.setText("Комбинация цифр теперь равна " + arrlst);//выводим в надпись l2 текст + результат
 				}
-				if (e.getSource() == b1) {
-					t1.setText(null);
-					l2.setText(null);
+				if (e.getSource() == b1) {//если нажата кнопка b1
+					t1.setText(null);//Обнуляем поле ввода
+					l2.setText(null);//Обнуляем надпись
 				}
-			} catch (Exception ex) {
+			} catch (Exception ex) {//если буквы
 				JOptionPane.showMessageDialog(null, "Необходимо вводить ЧИСЛА и только ЧИСЛА!\n   (От + бесконечности до - бесконечности)");
+				//Выводим сообщение о необходимости ввода именно числа
 			}
 		}
 	}
 
 }
+
 
