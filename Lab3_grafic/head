@@ -3,11 +3,11 @@ import javax.swing.JFrame;
 public class head {
 
 	public static void main(String[] args) {
-		newGUI r = new newGUI("Перестановка цифр");
-		r.setVisible(true);
-		r.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		r.setSize(500, 200);
-		r.setResizable(false);
-		r.setLocationRelativeTo(null);
+		newGUI r = new newGUI("Перестановка цифр"); //Называем шапку
+		r.setVisible(true);//Делаем видимой форму
+		r.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//Правильное закрытие формы
+		r.setSize(500, 200);//Размер
+		r.setResizable(false);//Запрет изменения размера
+		r.setLocationRelativeTo(null);//Появляется в центре
 	}
 }
