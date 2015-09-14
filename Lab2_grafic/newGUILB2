@@ -1,0 +1,54 @@
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import javax.swing.*;
+public class newGUILB2 extends JFrame {
+	/** Написать регулярное выражение, определяющее является ли данная 
+	 * строчка шестнадцатиричным идентификатором цвета в HTML. Где #FFFFFF 
+	 * для белого, #000000 для черного, #FF0000 для красного и т.д. 
+	 * – пример правильных выражений: #FFFFFF, #FF3421, #00ff00. 
+	 * – пример неправильных выражений: 232323, f#fddee, #fd2.*/
+	private static final long serialVersionUID = 1L;
+	JButton b1, b2;//Кнопка b1, b2
+	JLabel l1, l2;//Надпись l1, l2
+	JTextField t1;//Поле ввода текста
+	eHandler handler = new eHandler();//Новый класс для отлова ошибки
+	public newGUILB2(String s) {
+		super(s);
+		setLayout(new FlowLayout());//Создаем лайаут
+		b1 = new JButton("Очистить");//Кнопка "Очистить"
+		b2 = new JButton("Проверить");//Кнопка "Посчитать"
+		l1 = new JLabel("Введите индефикатор цвета");//Надпись "Введите комбинацию чисел"
+		l2 = new JLabel("");//Пустая надпись для вывода результата 
+		t1 = new JTextField(10);//Поле ввода
+		add(b1);//Добавляем кнопку b1
+		add(b2);//Добавляем кнопку b2
+		add(l1);//Добавляем надпись l1
+		add(t1);//Добавляем поле ввода t1
+		add(l2);//Добавляем надпись l2
+		b2.addActionListener(handler);//Задаем действие кнопке b1
+		b1.addActionListener(handler);//Задаем действие кнопке b2
+	}
+	public class eHandler implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			
+				if (e.getSource() == b2) { //Если нажимают кнопку b2
+					String line = t1.getText();//Считываем данные с поля ввода
+					Pattern p1 = Pattern.compile("^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$");//Создаем регулярное выражение
+					Matcher m1 = p1.matcher(line);// Сравниваем с условием
+					boolean b = m1.matches();//узнаем булево выражения
+					l2.setText("Идентификатор  " + b);//выводим в надпись l2 текст + результат
+				}
+				if (e.getSource() == b1) {//если нажата кнопка b1
+					t1.setText(null);//Обнуляем поле ввода
+					l2.setText(null);//Обнуляем надпись
+				}
+			
+		}
+	}
+}
+
+
